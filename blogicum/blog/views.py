@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 
 
-posts = [
+posts: list[dict[str, any]] = [
     {
         'id': 0,
         'location': 'Остров отчаянья',
@@ -54,7 +54,7 @@ def index(request):
 
 def post_detail(request, post_id):
     if post_id not in posts_dict:
-        raise Http404(f"Поста под номером {post_id} не существует")
+        raise Http404(f'Поста под номером {post_id} не существует')
 
     return render(request, 'blog/detail.html', {'post': posts_dict[post_id]})
 
